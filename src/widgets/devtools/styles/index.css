@@ -1,0 +1,113 @@
+.devtools {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-size: 11px;
+}
+.devtools .pnl {
+  border: 1px solid #a3a3a3;
+  margin: 5px;
+}
+.devtools .pnl .pnl-heading {
+  background: #e8e8e8;
+  border-bottom: 1px solid #a3a3a3;
+  padding: 3px;
+  height: 14px;
+}
+.devtools * {
+  box-sizing: content-box;
+}
+.devtools .k-listview.k-selectable {
+  cursor: default;
+}
+.devtools .item {
+  position: relative;
+  padding: 2px 5px 2px 5px;
+  color: #445;
+}
+.devtools .k-state-selected {
+  background: #ccc;
+}
+.devtools .first-side {
+  width: 150px;
+  background: white;
+  border: 0;
+  border-right: 1px solid #a3a3a3;
+}
+.devtools .first-side .title {
+  background: #e8e8e8;
+  border-bottom: 1px solid #a3a3a3;
+  line-height: 32px;
+  padding-left: 10px;
+}
+.devtools .main {
+  flex: 1;
+  position: relative;
+}
+.devtools .main > .head {
+  padding: 3px;
+  border-bottom: 1px solid #a3a3a3;
+  background: #e8e8e8;
+}
+.devtools .second-side {
+  width: 300px;
+  border-left: 1px solid #a3a3a3;
+}
+.devtools .widget-list .name {
+  font-size: 15px;
+  margin-bottom: 3px;
+}
+.devtools .widget-list .item {
+  border-bottom: 1px solid #eee;
+}
+.devtools .widget-list .ref {
+  color: #999;
+}
+.devtools .widget-detail {
+  display: flex;
+  position: absolute;
+  top: 33px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.devtools .widget-detail .panel {
+  margin: 5px;
+}
+.devtools .widget-detail .sub-views {
+  padding: 5px;
+}
+.devtools .widget-detail .sub-windows {
+  padding: 5px;
+}
+.devtools .view-container {
+  width: 120px;
+  border-right: 1px solid #a3a3a3;
+}
+.devtools .view-list .item {
+  border-bottom: 1px solid #eee;
+}
+.devtools .view-list .name {
+  font-size: 13px;
+}
+.devtools .view-list .ref {
+  color: #999;
+}
+.devtools .ismain {
+  width: 8px;
+  height: 8px;
+  border: 1px solid green;
+  background: green;
+  border-radius: 20px;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+.devtools .view-detail {
+  flex: 1;
+}
+.devtools .view-detail .head {
+  background: #eee;
+  border-bottom: 1px solid #bbb;
+  padding: 3px;
+}

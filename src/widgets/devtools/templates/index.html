@@ -1,0 +1,77 @@
+<div class="first-side">
+    <div class="title">> 活动的部件</div>
+    <div class="widget-list" data-role="listview" data-selectable="true" data-template="tpl-widget-item"
+        data-bind="source: data.widgetInfos, events:{ change: onWidgetChange }">
+    </div>
+</div>
+<div class="main">
+    <div class="head">
+        <button data-action="reportApp" data-name="instance">实例对象</button>
+        <button data-action="reportApp" data-name="data">全局数据</button>
+        <button data-action="refresh" style="float: right;">刷新数据</button>
+        <button data-action="reload" style="float: right;">页面重加载</button>
+    </div>
+    <div class="widget-detail">
+        <div class="view-container">
+            <div class="view-list" data-selectable="true" data-role="listview"
+                data-template="tpl-view-item" data-bind="source: currWidgetViews, events:{ change: onViewChange }">
+            </div>
+        </div>
+        <div class="view-detail" data-bind="attr: { data-view: currView.name }">
+            <div class="head">
+                <button data-action="reportView" data-name="instance">实例对象</button>
+                <button data-action="reportView" data-name="dom">DOM</button>
+                <button data-action="reportView" data-name="viewmodel">视图模型</button>
+                <button data-action="reportView" data-name="tpl">模板</button>
+            </div>
+            <div class="pnl">
+                <div class="pnl-heading">子视图</div>
+                <div class="sub-views">
+                    <div data-role="listview"
+                        data-template="tpl-sub-item" data-bind="source: currView.subViews">
+                    </div>
+                </div>
+            </div>
+            <div class="pnl">
+                <div class="pnl-heading">子窗口</div>
+                <div class="sub-windows">
+                    <div data-role="listview"
+                        data-template="tpl-sub-item" data-bind="source: currView.subWindows">
+                    </div>
+                </div>
+            </div>
+            <div class="events"></div>
+            <div class="messages"></div>
+        </div>
+    </div>
+</div>
+<!--<div class="second-side">
+    <div class="pnl">
+        <div class="head">活动记录</div>
+        <div class="bar">
+            <button>全部</button>
+            <button>当前部件</button>
+            <button>当前视图</button>
+        </div>
+        <div class="logs"></div>
+    </div>
+</div>-->
+<script type="text/template" id="tpl-widget-item">
+    <div class="item">
+        <div class="name">#= name # </div>
+        <div class="ref">
+            #= ref # 
+            <span>[#= uplevel #]</span>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="tpl-view-item">
+    <div class="item">
+        # var mainStr = isMain === true ? '<span class="ismain" title="主视图"></span>' : ''; #
+        <div class="name">#= name # #= mainStr #</div>
+        <div class="ref">#= ref #</div>
+    </div>
+</script>
+<script type="text/template" id="tpl-sub-item">
+    <a href="javascript:;">#= data #</a>
+</script>

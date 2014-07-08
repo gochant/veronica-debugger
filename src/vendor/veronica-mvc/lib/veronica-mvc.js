@@ -1,0 +1,1 @@
+define(['veronica-mvc'], function () { });
