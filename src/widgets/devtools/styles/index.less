@@ -38,6 +38,7 @@
     }
 
     .first-side {
+        position: relative;
         width: 150px;
         background: white;
         border: 0;
@@ -48,6 +49,12 @@
             border-bottom: 1px solid @borderColor;
             line-height: 32px;
             padding-left: 10px;
+        }
+
+        .count {
+            padding: 1px 3px;
+            background: rgb(145, 145, 145);
+            color: white;
         }
     }
 
@@ -70,8 +77,14 @@
     }
 
     .widget-list {
+        position: absolute;
+        top: 34px;
+        bottom: 0;
+        width: 100%;
+        overflow-y: auto;
+
         .name {
-            font-size: 15px;
+            font-size: 13px;
             margin-bottom: 3px;
         }
 
@@ -106,8 +119,9 @@
     }
 
     .view-container {
-        width: 120px;
+        width: 150px;
         border-right: 1px solid @borderColor;
+        overflow-y: auto;
     }
 
     .view-list {
@@ -137,6 +151,7 @@
 
     .view-detail {
         flex: 1;
+        overflow: auto;
 
         .head {
             background: #eee;

@@ -29,6 +29,7 @@
   background: #ccc;
 }
 .devtools .first-side {
+  position: relative;
   width: 150px;
   background: white;
   border: 0;
@@ -39,6 +40,11 @@
   border-bottom: 1px solid #a3a3a3;
   line-height: 32px;
   padding-left: 10px;
+}
+.devtools .first-side .count {
+  padding: 1px 3px;
+  background: #919191;
+  color: white;
 }
 .devtools .main {
   flex: 1;
@@ -53,8 +59,15 @@
   width: 300px;
   border-left: 1px solid #a3a3a3;
 }
+.devtools .widget-list {
+  position: absolute;
+  top: 34px;
+  bottom: 0;
+  width: 100%;
+  overflow-y: auto;
+}
 .devtools .widget-list .name {
-  font-size: 15px;
+  font-size: 13px;
   margin-bottom: 3px;
 }
 .devtools .widget-list .item {
@@ -81,8 +94,9 @@
   padding: 5px;
 }
 .devtools .view-container {
-  width: 120px;
+  width: 150px;
   border-right: 1px solid #a3a3a3;
+  overflow-y: auto;
 }
 .devtools .view-list .item {
   border-bottom: 1px solid #eee;
@@ -105,6 +119,7 @@
 }
 .devtools .view-detail {
   flex: 1;
+  overflow: auto;
 }
 .devtools .view-detail .head {
   background: #eee;

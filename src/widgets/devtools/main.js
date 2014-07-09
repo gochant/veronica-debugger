@@ -20,6 +20,7 @@ define([
                     currWidgetIndex: 0,
                     currViewIndex: 0,
                     currView: null,
+                    widgetCount: 0,
                     currWidgetViews: [],
                     onWidgetChange: function (e) {
                         this.set('currWidgetIndex', e.sender.select().index());
@@ -75,6 +76,7 @@ define([
                 var me = this;
                 chrome.devtools.inspectedWindow.eval("window.__veronicaAgent.getAppInfo()", function (appInfo) {
                     me.model({ data: appInfo });
+                    me.model().set('widgetCount', appInfo.widgetInfos.length);
                     me.instance('.widget-list').select(me.$('.widget-list').children().first());
                 });
             },

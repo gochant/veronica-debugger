@@ -34,14 +34,14 @@ window.__veronicaAgent = (function () {
         }
     };
 
-    var createWidgetInfo = function (info, core) {
-        var sandbox = info.sandbox;
-        var mainView = createViewInfo(info, sandbox.name, core, true);
+    var createWidgetInfo = function (widget, core) {
+        var sandbox = widget.options.sandbox;
+        var mainView = createViewInfo(widget, sandbox.name, core, true);
         return {
             name: sandbox.name,
             uplevel: sandbox._parent,
             ref: sandbox._ref,
-            views: [mainView].concat(_(info._views).map(function (view, index) {
+            views: [mainView].concat(_(widget._views).map(function (view, index) {
                 return createViewInfo(view, index, core, false);
             }))
         }
@@ -120,6 +120,9 @@ window.__veronicaAgent = (function () {
         }
     });
 
+    window.createViewInfo = createViewInfo;
+    window.createWidgetInfo = createWidgetInfo;
+
     return {
         getAppInfo: function () {
             var app = window.__veronicaApp;
@@ -128,7 +131,6 @@ window.__veronicaAgent = (function () {
                 if (key === 'app-' + app.name) return;
                 return createWidgetInfo(_.isFunction(sandbox._widgetObj) ? sandbox._widgetObj() : sandbox._widgetObj, app.core);
             }).compact().value();
-
             var result = {
                 appInfo: {
                     name: app.name
@@ -141,7 +143,7 @@ window.__veronicaAgent = (function () {
         reportView: function (widgetId, viewId, prop) {
             var app = window.__veronicaApp;
             var widget = app.core.sandboxes._sandboxPool[widgetId]._widgetObj;
-            widget = _.isFunction(widget) ? widget():widget;
+            widget = _.isFunction(widget) ? widget() : widget;
             var view = viewId === '' ? widget : widget._views[viewId];
             if (prop === 'instance') {
                 console.info(view);
@@ -155,7 +157,7 @@ window.__veronicaAgent = (function () {
             if (prop === 'tpl') {
                 console.info(view.template);
             }
-          
+
         },
         reportApp: function (prop) {
             if (prop === 'instance') {
