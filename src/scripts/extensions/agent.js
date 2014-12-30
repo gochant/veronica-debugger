@@ -124,20 +124,21 @@ window.__veronicaAgent = (function () {
     window.createWidgetInfo = createWidgetInfo;
 
     return {
+        // 获取应用程序信息（目前只用了这个方法）
         getAppInfo: function () {
             var app = window.__veronicaApp;
-
-            var widgetInfos = _.chain(app.core.sandboxes._sandboxPool).map(function (sandbox, key) {
+            var widgetInfos = _.chain(app.sandboxes._sandboxPool).map(function (sandbox, key) {
                 if (key === 'app-' + app.name) return;
                 return createWidgetInfo(_.isFunction(sandbox._widgetObj) ? sandbox._widgetObj() : sandbox._widgetObj, app.core);
             }).compact().value();
+
             var result = {
                 appInfo: {
                     name: app.name
                 },
                 widgetInfos: widgetInfos
             };
-
+            alert(result);
             return result;
         },
         reportView: function (widgetId, viewId, prop) {

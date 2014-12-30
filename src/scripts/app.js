@@ -11,6 +11,7 @@ define([
     app.use('veronica-mvc');
 
     if (chrome.devtools) {
+        // 接收到本扩展进程的页面或content script发送一条消息时触发
         panelPort.onMessage.addListener(_.bind(function (message) {
             // if (message.type === 'addWidget') {
             app.sandbox.emit('modify', message);
@@ -47,13 +48,12 @@ define([
         }
     };
 
+    // 重加载当前页面，并注入脚本
     app.reloadPage = function () {
         reloadInjecting(['vendor/Watch.JS/src/watch.js', 'scripts/extensions/agent.js']);
     }
 
     app.launch().done(function () {
-
-        app.core.registerWidgets(app.core.getConfig().controls);
 
         app.addPage({
             'home': {

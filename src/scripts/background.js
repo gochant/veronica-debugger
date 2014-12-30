@@ -1,12 +1,16 @@
+// 常驻后台程序
+
 var panelPorts = {};
 
+// 接收到本扩展进程的页面或content script发来的连接时触发
 chrome.extension.onConnect.addListener(function (port) {
     if (port.name !== "devtoolspanel") return;
 
+    // 接收到本扩展进程的页面或content script发送一条消息时触发
     port.onMessage.addListener(function(message) {
         if (message.name == "identification") {
             var tabId = message.data;
-            panelPorts[tabId] = port;
+            panelPorts[tabId] = port;  // 将该端口缓存到全局变量
         }
     });
 });
