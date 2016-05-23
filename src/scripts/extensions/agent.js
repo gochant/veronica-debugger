@@ -124,7 +124,7 @@ window.__veronicaAgent = (function () {
     window.createWidgetInfo = createWidgetInfo;
 
     return {
-        // »ñÈ¡Ó¦ÓÃ³ÌĞòĞÅÏ¢£¨Ä¿Ç°Ö»ÓÃÁËÕâ¸ö·½·¨£©
+        // è·å–åº”ç”¨ç¨‹åºä¿¡æ¯ï¼ˆç›®å‰åªç”¨äº†è¿™ä¸ªæ–¹æ³•ï¼‰
         getAppInfo: function () {
             var app = window.__veronicaApp;
             var widgetInfos = _.chain(app.sandboxes._sandboxPool).map(function (sandbox, key) {
@@ -138,7 +138,6 @@ window.__veronicaAgent = (function () {
                 },
                 widgetInfos: widgetInfos
             };
-            alert(result);
             return result;
         },
         reportView: function (widgetId, viewId, prop) {

@@ -6,7 +6,7 @@ window.addEventListener("message", function(event) {
 }, false);
 
 window.addEventListener('DOMContentLoaded', function () {
-    // Ò³Ãæ¼ÓÔØÍê±Ïºó·¢²¼ÏûÏ¢
+    // é¡µé¢åŠ è½½å®Œæ¯•åå‘å¸ƒæ¶ˆæ¯
     chrome.extension.sendMessage({
         target: 'page',
         name: 'ready'

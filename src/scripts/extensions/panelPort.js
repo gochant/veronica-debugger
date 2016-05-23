@@ -1,13 +1,13 @@
 define([], function () {
 
-    var panelPort, // À©Õ¹·¢ËÍºÍ½ÓÊÕÏûÏ¢µÄ¶Ë¿Ú
+    var panelPort, // æ‰©å±•å‘é€å’Œæ¥æ”¶æ¶ˆæ¯çš„ç«¯å£
         tabId;
     if (chrome.devtools) {
-        tabId = chrome.devtools.inspectedWindow.tabId;  // »ñÈ¡µ±Ç°´°¿ÚµÄ tabId
+        tabId = chrome.devtools.inspectedWindow.tabId;  // è·å–å½“å‰çª—å£çš„ tabId
 
-        // ³¢ÊÔÁ¬½Óµ½À©Õ¹ÄÚÆäËû¼àÌıÕß£¨±ÈÈçÀ©Õ¹µÄbackground page£©¡£
-        // ¸Ã·½·¨Ö÷ÒªÓÉcontent scriptsÔÚÁ¬½Óµ½ÆäÀ©Õ¹½ø³ÌÊ±Ê¹ÓÃ¡£
-        // ·´Ö®£¬ÔÚÀ©Õ¹½ø³ÌÖĞ£¬¿ÉÍ¨¹ı chrome.tabs.connect()ÓëÇ¶ÈëÔÚ±êÇ©ÖĞµÄcontent script½øĞĞÁ¬½Ó¡£
+        // å°è¯•è¿æ¥åˆ°æ‰©å±•å†…å…¶ä»–ç›‘å¬è€…ï¼ˆæ¯”å¦‚æ‰©å±•çš„background pageï¼‰ã€‚
+        // è¯¥æ–¹æ³•ä¸»è¦ç”±content scriptsåœ¨è¿æ¥åˆ°å…¶æ‰©å±•è¿›ç¨‹æ—¶ä½¿ç”¨ã€‚
+        // åä¹‹ï¼Œåœ¨æ‰©å±•è¿›ç¨‹ä¸­ï¼Œå¯é€šè¿‡ chrome.tabs.connect()ä¸åµŒå…¥åœ¨æ ‡ç­¾ä¸­çš„content scriptè¿›è¡Œè¿æ¥ã€‚
         panelPort = chrome.extension.connect({ name: "devtoolspanel" });
 
         panelPort.postMessage({

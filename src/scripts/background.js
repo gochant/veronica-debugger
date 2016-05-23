@@ -1,16 +1,16 @@
-// 常驻后台程序
+// 甯搁┗鍚庡彴绋嬪簭
 
 var panelPorts = {};
 
-// 接收到本扩展进程的页面或content script发来的连接时触发
+// 鎺ユ敹鍒版湰鎵╁睍杩涚▼鐨勯〉闈㈡垨content script鍙戞潵鐨勮繛鎺ユ椂瑙﹀彂
 chrome.extension.onConnect.addListener(function (port) {
     if (port.name !== "devtoolspanel") return;
 
-    // 接收到本扩展进程的页面或content script发送一条消息时触发
+    // 鎺ユ敹鍒版湰鎵╁睍杩涚▼鐨勯〉闈㈡垨content script鍙戦�佷竴鏉℃秷鎭椂瑙﹀彂
     port.onMessage.addListener(function(message) {
         if (message.name == "identification") {
             var tabId = message.data;
-            panelPorts[tabId] = port;  // 将该端口缓存到全局变量
+            panelPorts[tabId] = port;  // 灏嗚绔彛缂撳瓨鍒板叏灞�鍙橀噺
         }
     });
 });
