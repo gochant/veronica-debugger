@@ -1,6 +1,6 @@
 {
-  "name": "hello-veronica",
-  "main": "frontend/index.html",
+  "name": "veronica-debugger",
+  "version": "0.1.0",
   "window": {
     "toolbar": false,
     "width": 960,
