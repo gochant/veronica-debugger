@@ -35,12 +35,13 @@ window.__veronicaAgent = (function () {
     };
 
     var createWidgetInfo = function (widget, core) {
+        if (!widget) return false;
         var sandbox = widget.options.sandbox;
         var mainView = createViewInfo(widget, sandbox.name, core, true);
         return {
             name: sandbox.name,
             uplevel: sandbox._parent,
-            ref: sandbox._ref,
+            ref: sandbox._id,
             views: [mainView].concat(_(widget._views).map(function (view, index) {
                 return createViewInfo(view, index, core, false);
             }))
@@ -102,7 +103,7 @@ window.__veronicaAgent = (function () {
                                 patchFunction(veronica, 'createApp', function (originFunc) {
                                     return function () {
                                         var app = originFunc.apply(veronica, arguments);
-                                        window.__veronicaApp = app;
+                                        window.__verApp = app;
                                         window._ = app.core._;
                                         return app;
                                     }
@@ -126,10 +127,10 @@ window.__veronicaAgent = (function () {
     return {
         // 获取应用程序信息（目前只用了这个方法）
         getAppInfo: function () {
-            var app = window.__veronicaApp;
+            var app = window.__verApp;
             var widgetInfos = _.chain(app.sandboxes._sandboxPool).map(function (sandbox, key) {
                 if (key === 'app-' + app.name) return;
-                return createWidgetInfo(_.isFunction(sandbox._widgetObj) ? sandbox._widgetObj() : sandbox._widgetObj, app.core);
+                return createWidgetInfo(_.isFunction(sandbox.getHost) ? sandbox.getHost() : sandbox.getHost, app.core);
             }).compact().value();
 
             var result = {
@@ -141,9 +142,9 @@ window.__veronicaAgent = (function () {
             return result;
         },
         reportView: function (widgetId, viewId, prop) {
-            var app = window.__veronicaApp;
-            var widget = app.core.sandboxes._sandboxPool[widgetId]._widgetObj;
-            widget = _.isFunction(widget) ? widget() : widget;
+            var app = window.__verApp;
+            var widget = app.sandboxes._sandboxPool[widgetId].getHost();
+
             var view = viewId === '' ? widget : widget._views[viewId];
             if (prop === 'instance') {
                 console.info(view);
@@ -160,11 +161,12 @@ window.__veronicaAgent = (function () {
 
         },
         reportApp: function (prop) {
+            var app = window.__verApp;
             if (prop === 'instance') {
-                console.info(window.__veronicaApp);
+                console.info(app);
             }
             if (prop === 'data') {
-                console.info(window.__veronicaApp.data._data);
+                console.info(app.data._data);
             }
         }
     };
