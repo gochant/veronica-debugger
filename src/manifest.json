@@ -1,7 +1,7 @@
 {
   "name": "Veronica Debugger",
-  "version": "0.1",
-  "description": "Developer Tools extension for debugging Veronica.js applications.",
+  "version": "0.2.0",
+  "description": "Developer tools extension for debugging veronica.js applications.",
   "author": "Channing Guo",
   "minimum_chrome_version": "30.0",
   "icons": {
